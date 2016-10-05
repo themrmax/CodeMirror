@@ -1,3 +1,4 @@
+var phantom = /PhantomJS/.test(navigator.userAgent);
 var Pos = CodeMirror.Pos;
 CodeMirror.Vim.suppressErrorLogging = true;
 

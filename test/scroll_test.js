@@ -1,6 +1,26 @@
 (function() {
   "use strict";
 
+  function addDoc(cm, width, height) {
+    var content = [], line = "";
+    for (var i = 0; i < width; ++i) line += "x";
+    for (var i = 0; i < height; ++i) content.push(line);
+    cm.setValue(content.join("\n"));
+  }
+
+  function byClassName(elt, cls) {
+    if (elt.getElementsByClassName) return elt.getElementsByClassName(cls);
+    var found = [], re = new RegExp("\\b" + cls + "\\b");
+    function search(elt) {
+      if (elt.nodeType == 3) return;
+      if (re.test(elt.className)) found.push(elt);
+      for (var i = 0, e = elt.childNodes.length; i < e; ++i)
+        search(elt.childNodes[i]);
+    }
+    search(elt);
+    return found;
+  }
+
   namespace = "scroll_";
 
   testCM("bars_hidden", function(cm) {

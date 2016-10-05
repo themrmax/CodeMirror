@@ -1,4 +1,11 @@
 (function() {
+  function addDoc(cm, width, height) {
+    var content = [], line = "";
+    for (var i = 0; i < width; ++i) line += "x";
+    for (var i = 0; i < height; ++i) content.push(line);
+    cm.setValue(content.join("\n"));
+  }
+
   // A minilanguage for instantiating linked CodeMirror instances and Docs
   function instantiateSpec(spec, place, opts) {
     var names = {}, pos = 0, l = spec.length, editors = [];
