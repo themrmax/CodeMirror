@@ -118,8 +118,8 @@
       } else if ((identical || !opening) && next == ch) {
         if (triples.indexOf(ch) >= 0 && cm.getRange(cur, Pos(cur.line, cur.ch + 3)) == ch + ch + ch)
           curType = "skipThree";
-        else
-          curType = "skip";
+        else if (cm.getTokenAt(cur-1).type === "string") {
+          curType = "skip"};
       } else if (identical && cur.ch > 1 && triples.indexOf(ch) >= 0 &&
                  cm.getRange(Pos(cur.line, cur.ch - 2), cur) == ch + ch &&
                  (cur.ch <= 2 || cm.getRange(Pos(cur.line, cur.ch - 3), Pos(cur.line, cur.ch - 2)) != ch)) {
